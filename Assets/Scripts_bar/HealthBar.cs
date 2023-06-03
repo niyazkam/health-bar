@@ -3,9 +3,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class HealthUI : MonoBehaviour
+public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Health _health;
+    [SerializeField] private float _barChangeTime;
     
     private Slider _healthSlider;
 
@@ -16,12 +17,12 @@ public class HealthUI : MonoBehaviour
 
     private void OnEnable()
     {
-        _health.HealthChanged += UpdateHealthUI;
+        _health.HealthChanged += OnHealthChanged;
     }
 
     private void OnDisable()
     {
-        _health.HealthChanged -= UpdateHealthUI;
+        _health.HealthChanged -= OnHealthChanged;
     }
 
     private void Start()
@@ -29,9 +30,9 @@ public class HealthUI : MonoBehaviour
         _healthSlider.value = _health.HealthNormalized;
     }
 
-    private void UpdateHealthUI(object sender, float healthNormalized)
+    private void OnHealthChanged(float healthNormalized)
     {
         Debug.Log(healthNormalized);
-        _healthSlider.DOValue(healthNormalized, 1f);
+        _healthSlider.DOValue(healthNormalized, _barChangeTime);
     }
 }

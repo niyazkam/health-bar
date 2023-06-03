@@ -612,6 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 183298902}
+  _barChangeTime: 1
 --- !u!114 &931218940
 MonoBehaviour:
   m_ObjectHideFlags: 0
